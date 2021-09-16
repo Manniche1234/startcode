@@ -14,7 +14,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="dat3-startcode" options="-endorseddirs &quot;C:\Users\August\OneDrive - EFIF\Tredje Semester\dat3-startcode\target/endorsed&quot;" />
-      <module name="devops-starter" options="-endorseddirs C:/Users/August/OneDrive - EFIF/Tredje Semester/dat3-startcode/target/endorsed" />
+      <module name="devops-starter" options="-endorseddirs $PROJECT_DIR$/target/endorsed" />
     </option>
   </component>
 </project>
