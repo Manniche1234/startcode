@@ -65,7 +65,7 @@ public class MovieResourceTest {
         try{
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
-            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
+//            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
             em.getTransaction().commit();
         }finally {
             em.close();
@@ -105,7 +105,7 @@ public class MovieResourceTest {
     }
 
 
-   // @Test
+    @Test
     public void testAllMovies()throws Exception{
         given()
                 .contentType("application/json")
@@ -116,7 +116,7 @@ public class MovieResourceTest {
     }
 
 
- //  @Test
+   @Test
     public void testCount() throws Exception {
         given()
                 .contentType("application/json")
@@ -126,7 +126,7 @@ public class MovieResourceTest {
                 .body(equalTo("2"));
     }
 
-  //  @Test
+    @Test
     public void testTitle() throws Exception{
         given()
                 .contentType("application/json")
