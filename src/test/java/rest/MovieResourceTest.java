@@ -88,8 +88,10 @@ public class MovieResourceTest {
             em.persist(r1);
             em.persist(r2);
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
             em.persist(movie);
             em.persist(movie1);
+
             em.getTransaction().commit();
         } finally {
             em.close();

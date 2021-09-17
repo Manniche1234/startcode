@@ -7,6 +7,7 @@ import java.util.ArrayList;
 @Table(name = "movie")
 @Entity
 @NamedQuery(name = "Movie.deleteAllRows", query = "DELETE from Movie")
+@NamedNativeQuery(name = "Movie.resetAutoI", query = "ALTER table Movie AUTO_INCREMENT = 1")
 public class Movie implements Serializable {
 
     @Id
