@@ -8,10 +8,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
 
 import javax.persistence.EntityManager;
@@ -63,13 +60,23 @@ public class MovieResourceTest {
         httpServer.shutdownNow();
     }
 
+    @AfterEach
+    public void setUpAfter(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
+            em.getTransaction().commit();
+        }finally {
+            em.close();
+        }
+    }
     // Setup the DataBase (used by the test-server and this test) in a known state BEFORE EACH TEST
     //TODO -- Make sure to change the EntityClass used below to use YOUR OWN (renamed) Entity class
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        r1 = new RenameMe("Some txt", "More text");
-        r2 = new RenameMe("aaa", "bbb");
         ArrayList<String> actors = new ArrayList<>();
         actors.add("Søren Tissemand");
         actors.add("August Bigus");
@@ -84,14 +91,8 @@ public class MovieResourceTest {
         Movie movie1 = new Movie(2002,"The stribe",actors1);
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("RenameMe.deleteAllRows").executeUpdate();
-            em.persist(r1);
-            em.persist(r2);
-            em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
-            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
             em.persist(movie);
             em.persist(movie1);
-
             em.getTransaction().commit();
         } finally {
             em.close();
