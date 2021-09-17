@@ -37,7 +37,7 @@ public class EmployeeFacade {
         return emf.createEntityManager();
     }
 
-    public Employee createEmployee(){
+    public void createEmployee(){
         Employee employee = new Employee("August","Kan noget",12321);
         Employee employee1 = new Employee("Alex","Er sød", 123213);
         EntityManager em = emf.createEntityManager();
@@ -46,7 +46,6 @@ public class EmployeeFacade {
             em.persist(employee);
             em.persist(employee1);
             em.getTransaction().commit();
-            return employee;
         }finally {
             em.close();
         }

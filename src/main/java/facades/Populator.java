@@ -6,6 +6,7 @@
 package facades;
 
 import dtos.RenameMeDTO;
+import entities.Movie;
 import entities.RenameMe;
 import javax.persistence.EntityManagerFactory;
 import utils.EMF_Creator;
@@ -19,10 +20,12 @@ public class Populator {
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
         FacadeExample fe = FacadeExample.getFacadeExample(emf);
         EmployeeFacade ef = EmployeeFacade.getEmployeeFacade(emf);
+        MovieFacade mf = MovieFacade.getMovieFacade(emf);
         fe.create(new RenameMeDTO(new RenameMe("First 1", "Last 1")));
         fe.create(new RenameMeDTO(new RenameMe("First 2", "Last 2")));
         fe.create(new RenameMeDTO(new RenameMe("First 3", "Last 3")));
-        ef.createEmployee();
+        //ef.createEmployee();
+        mf.createMovie();
     }
     
     public static void main(String[] args) {

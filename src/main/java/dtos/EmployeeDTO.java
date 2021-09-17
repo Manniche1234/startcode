@@ -8,7 +8,7 @@ import java.util.List;
 
 public class EmployeeDTO {
 
-    private long id;
+    private Long id;
     private String name;
     private String address;
 
