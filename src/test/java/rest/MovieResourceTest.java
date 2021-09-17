@@ -65,7 +65,7 @@ public class MovieResourceTest {
         try{
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
-//            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
+            em.createNamedQuery("Movie.resetAutoI").executeUpdate();
             em.getTransaction().commit();
         }finally {
             em.close();
@@ -136,7 +136,7 @@ public class MovieResourceTest {
                 .body("title", hasItems("Mr. Jacob"));
     }
 
-//    @Test
+    @Test
     public void testId() throws Exception{
         given()
                 .contentType("application/json")
